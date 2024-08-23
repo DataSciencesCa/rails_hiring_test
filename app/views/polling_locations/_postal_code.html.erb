@@ -1,0 +1,3 @@
+<%= turbo_frame_tag dom_id(polling_location, :postal_code) do %>
+    <%= link_to polling_location.postal_code, edit_riding_polling_location_path(riding, polling_location) %>
+<% end %>

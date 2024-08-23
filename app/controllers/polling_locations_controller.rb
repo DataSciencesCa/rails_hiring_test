@@ -1,6 +1,7 @@
 class PollingLocationsController < ApplicationController
     before_action :set_polling_location, only: %i[ show edit update destroy ]
-  
+    include ActionView::RecordIdentifier
+
     # GET /ridings or /ridings.json
     # def index
     #   @ridings = Riding.all
@@ -8,7 +9,6 @@ class PollingLocationsController < ApplicationController
   
     # GET /ridings/1 or /ridings/1.json
     def show
-      @polling_locations = @riding.polling_locations
     end
   
     # GET /polling_locations/new
@@ -40,8 +40,16 @@ class PollingLocationsController < ApplicationController
     def update
       respond_to do |format|
         if @polling_location.update(polling_location_params)
-          format.html { redirect_to riding_url(@riding), notice: "Polling Location was successfully updated." }
-          format.json { render :show, status: :ok, location: @polling_location }
+            format.html { redirect_to riding_url(@riding), notice: "Polling Location was successfully updated." }
+            format.json { render :show, status: :ok, location: @polling_location }
+            format.turbo_stream do
+                render turbo_stream: [
+                    turbo_stream.replace(dom_id(@polling_location, :title), partial: "polling_locations/title", locals: { riding: @riding, polling_location: @polling_location }),
+                    turbo_stream.replace(dom_id(@polling_location, :address), partial: "polling_locations/address", locals: { riding: @riding, polling_location: @polling_location }),
+                    turbo_stream.replace(dom_id(@polling_location, :city), partial: "polling_locations/city", locals: { riding: @riding, polling_location: @polling_location }),
+                    turbo_stream.replace(dom_id(@polling_location, :postal_code), partial: "polling_locations/postal_code", locals: { riding: @riding, polling_location: @polling_location })
+                ]
+            end
         else
           format.html { render :edit, status: :unprocessable_entity }
           format.json { render json: @polling_location.errors, status: :unprocessable_entity }
@@ -51,10 +59,10 @@ class PollingLocationsController < ApplicationController
   
     # DELETE /ridings/1 or /ridings/1.json
     def destroy
-      @riding.destroy!
+      @polling_location.destroy!
   
       respond_to do |format|
-        format.html { redirect_to ridings_url, notice: "Riding was successfully destroyed." }
+        format.html { redirect_to ridings_url, notice: "Polling Location was successfully deleted." }
         format.json { head :no_content }
       end
     end
