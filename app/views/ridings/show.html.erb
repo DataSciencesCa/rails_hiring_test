@@ -7,49 +7,20 @@
 <h2 class="mt-4 text-lg font-semibold leading-6 text-gray-900">Polling locations</h2>
 
 <div class="mt-6 p-6 border border-gray-500 rounded-lg grid grid-cols-6 gap-y-2">
-  <div class="col-span-2 font-medium">
-    Title
-  </div>
 
-  <div class="col-span-1 font-medium">
-    Address
-  </div>
+  <table class="min-w-full divide-y divide-gray-300">
+    <thead>
+      <tr>
+        <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Title</th>
+        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Address</th>
+        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">City</th>
+        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Postal Code</th>
+        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Polls</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-200">
+      <%= render @polling_locations %>
+    </tbody>
+  </table>
 
-  <div class="col-span-1 font-medium">
-    City
-  </div>
-
-  <div class="col-span-1 font-medium">
-    Postal code
-  </div>
-
-  <div class="col-span-1 font-medium">
-    Polls
-  </div>
-
-  <% if @polling_locations.any? %>
-    <% @polling_locations.each do |polling_location| %>
-      <div class="col-span-2">
-        <%= polling_location.title %>
-      </div>
-
-      <div class="col-span-1">
-        <%= polling_location.address %>
-      </div>
-
-      <div class="col-span-1">
-        <%= polling_location.city %>
-      </div>
-
-      <div class="col-span-1">
-        <%= polling_location.postal_code %>
-      </div>
-
-      <div class="col-span-1">
-        <%= polling_location.polls.map(&:number).join(", ")  %>
-      </div>
-    <% end %>
-  <% else %>
-    <div class="col-span-5 text-center mt-3">No polling locations</div>
-  <% end%>
 </div>

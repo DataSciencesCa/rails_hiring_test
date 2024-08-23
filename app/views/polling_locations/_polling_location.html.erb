@@ -1,0 +1,26 @@
+<% if polling_location %>
+  <tr id="polling_location_<%= polling_location.id %>">
+    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+      <%= turbo_frame_tag dom_id(polling_location, :title) do %>
+        <%= link_to polling_location.title, edit_riding_polling_location_path(@riding, polling_location) %>
+      <% end %>
+    </td>
+    <td class="whitespace-nowrap px-3 py-4 text-sm">
+      <%= polling_location.address %>
+    </td>
+    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+      <%= polling_location.city %>
+    </td>
+    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+      <%= polling_location.postal_code %>
+    </td>
+    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+      <%= polling_location.polls.map(&:number).join(", ") %>
+    </td>
+  </tr>
+  
+<% else %>
+  <tr>
+    <td>No polling locations</td>
+  </tr>
+<% end%>
