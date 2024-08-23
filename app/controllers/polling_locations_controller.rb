@@ -1,26 +1,18 @@
 class PollingLocationsController < ApplicationController
     before_action :set_polling_location, only: %i[ show edit update destroy ]
     include ActionView::RecordIdentifier
-
-    # GET /ridings or /ridings.json
-    # def index
-    #   @ridings = Riding.all
-    # end
   
-    # GET /ridings/1 or /ridings/1.json
     def show
     end
   
-    # GET /polling_locations/new
     def new
-      @polling_location = PollingLocation.new
+      @riding = Riding.find(params[:riding_id])
+      @polling_location = @riding.polling_locations.new
     end
   
-    # GET /ridings/1/edit
     def edit
     end
   
-    # POST /ridings or /ridings.json
     def create
       @riding = Riding.find(params[:riding_id])
       @polling_location = @riding.polling_locations.new(polling_location_params)
@@ -36,7 +28,6 @@ class PollingLocationsController < ApplicationController
       end
     end
   
-    # PATCH/PUT /ridings/1 or /ridings/1.json
     def update
       respond_to do |format|
         if @polling_location.update(polling_location_params)
@@ -57,7 +48,6 @@ class PollingLocationsController < ApplicationController
       end
     end
   
-    # DELETE /ridings/1 or /ridings/1.json
     def destroy
       @polling_location.destroy!
   

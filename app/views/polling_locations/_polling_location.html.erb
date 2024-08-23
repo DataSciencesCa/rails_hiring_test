@@ -24,7 +24,6 @@
       <%= polling_location.polls.map(&:number).join(", ") %>
     </td>
     <td>
-      <%= link_to 'Edit', edit_riding_polling_location_path(@riding, polling_location), data: { turbo_frame: "_top" } %> |
       <%= link_to 'Destroy', riding_polling_location_path(@riding, polling_location), method: :delete, data: { confirm: 'Are you sure?' } %>
     </td>
   </tr>

@@ -1,0 +1,21 @@
+<%= form_for @polling_location do |form| %>
+    <div>
+        <%= form.label :title %>
+        <%= form.text_field :title %>
+    </div>
+    <div>
+        <%= form.label :address %>
+        <%= form.text_field :address %>
+    </div>
+    <div>
+        <%= form.label :city %>
+        <%= form.text_field :city %>
+    </div>
+    <div>
+        <%= form.label :postal_code %>
+        <%= form.text_field :postal_code %>
+    </div>
+    <div>
+      <%= form.submit 'Save' %>
+    </div>
+<% end %>
