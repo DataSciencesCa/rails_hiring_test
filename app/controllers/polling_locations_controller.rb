@@ -52,7 +52,7 @@ class PollingLocationsController < ApplicationController
       @polling_location.destroy!
   
       respond_to do |format|
-        format.html { redirect_to ridings_url, notice: "Polling Location was successfully deleted." }
+        format.html { redirect_to riding_url(@riding), notice: "Polling Location was successfully deleted." }
         format.json { head :no_content }
       end
     end

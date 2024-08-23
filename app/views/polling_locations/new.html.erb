@@ -1,19 +1,20 @@
-<%= form_for @polling_location do |form| %>
+<h1>Create a New Polling Location</h1>
+<%= form_with model: [@riding, @polling_location] do |form| %>
     <div>
-        <%= form.label :title %>
-        <%= form.text_field :title %>
+        <%= form.label :title %> <br />
+        <%= form.text_field :title, class: "border border-gray-500" %>
     </div>
     <div>
-        <%= form.label :address %>
-        <%= form.text_field :address %>
+        <%= form.label :address %> <br />
+        <%= form.text_field :address, class: "border border-gray-500" %>
     </div>
     <div>
-        <%= form.label :city %>
-        <%= form.text_field :city %>
+        <%= form.label :city %> <br />
+        <%= form.text_field :city, class: "border border-gray-500" %>
     </div>
     <div>
-        <%= form.label :postal_code %>
-        <%= form.text_field :postal_code %>
+        <%= form.label :postal_code %> <br />
+        <%= form.text_field :postal_code, class: "border border-gray-500" %>
     </div>
     <div>
       <%= form.submit 'Save' %>
