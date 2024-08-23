@@ -24,10 +24,9 @@
       <%= polling_location.polls.map(&:number).join(", ") %>
     </td>
     <td>
-      <%= link_to 'Destroy', riding_polling_location_path(@riding, polling_location), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+      <%= link_to 'Delete', riding_polling_location_path(@riding, polling_location), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
     </td>
   </tr>
-  
 <% else %>
   <tr>
     <td>No polling locations</td>

@@ -6,11 +6,10 @@
 
 <h2 class="mt-4 text-lg font-semibold leading-6 text-gray-900">Polling locations</h2>
 
-<h4 class="border border-gray-500"><%= link_to '+ New Polling Location', new_riding_polling_location_path(@riding) %></h4>
+<h4><%= link_to '+ New Polling Location', new_riding_polling_location_path(@riding) %></h4>
 
-<div class="mt-6 p-6 border border-gray-500 rounded-lg grid grid-cols-6 gap-y-2">
-
-  <table class="min-w-full divide-y divide-gray-300">
+<% if @polling_locations.any? %>
+  <table class="min-w-full divide-y divide-gray-300 p-6">
     <thead>
       <tr>
         <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Title</th>
@@ -25,5 +24,4 @@
       <%= render @polling_locations %>
     </tbody>
   </table>
-
-</div>
+<% end %>
