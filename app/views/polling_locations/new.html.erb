@@ -1,0 +1,26 @@
+<h1>Create a New Polling Location</h1>
+<%= form_with model: [@riding, @polling_location] do |form| %>
+    <div>
+        <%= form.label :title %> <br />
+        <%= form.text_field :title, class: "border border-gray-500" %>
+    </div>
+    <div>
+        <%= form.label :address %> <br />
+        <%= form.text_field :address, class: "border border-gray-500" %>
+    </div>
+    <div>
+        <%= form.label :city %> <br />
+        <%= form.text_field :city, class: "border border-gray-500" %>
+    </div>
+    <div>
+        <%= form.label :postal_code %> <br />
+        <%= form.text_field :postal_code, class: "border border-gray-500" %>
+    </div>
+    <div>
+      <%= form.submit 'Save' %>
+    </div>
+<% end %>
+
+<br />
+
+<%= link_to "Back", riding_path(@riding) %>

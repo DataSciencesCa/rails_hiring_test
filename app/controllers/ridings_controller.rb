@@ -8,7 +8,7 @@ class RidingsController < ApplicationController
 
   # GET /ridings/1 or /ridings/1.json
   def show
-    @polling_locations = @riding.polling_locations
+    @polling_locations = @riding.polling_locations.order(created_at: :desc)
   end
 
   # GET /ridings/new

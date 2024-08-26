@@ -1,0 +1,34 @@
+<% if polling_location %>
+  <tr id="polling_location_<%= polling_location.id %>">
+    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+      <%= turbo_frame_tag dom_id(polling_location, :title) do %>
+        <%= link_to polling_location.title, edit_riding_polling_location_path(@riding, polling_location, { attribute: :title })  %>
+      <% end %>
+    </td>
+    <td class="whitespace-nowrap px-3 py-4 text-sm">
+      <%= turbo_frame_tag dom_id(polling_location, :address) do %>
+        <%= link_to polling_location.address, edit_riding_polling_location_path(@riding, polling_location, { attribute: :address }) %>
+      <% end %>
+    </td>
+    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+      <%= turbo_frame_tag dom_id(polling_location, :city) do %>
+        <%= link_to polling_location.city, edit_riding_polling_location_path(@riding, polling_location, { attribute: :city }) %>
+      <% end %>
+    </td>
+    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+      <%= turbo_frame_tag dom_id(polling_location, :postal_code) do %>
+        <%= link_to polling_location.postal_code, edit_riding_polling_location_path(@riding, polling_location, { attribute: :postal_code }) %>
+      <% end %>
+    </td>
+    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+      <%= polling_location.polls.map(&:number).join(", ") %>
+    </td>
+    <td>
+      <%= link_to 'Delete', riding_polling_location_path(@riding, polling_location), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+    </td>
+  </tr>
+<% else %>
+  <tr>
+    <td>No polling locations</td>
+  </tr>
+<% end%>
