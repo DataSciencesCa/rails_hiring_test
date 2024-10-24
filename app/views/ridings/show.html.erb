@@ -3,8 +3,10 @@
 <h1 class="text-xl font-semibold leading-6 text-gray-900"><%= @riding.name %> - <%= @riding.riding_code %></h1>
 <%= @riding.province %>
 
-
-<h2 class="mt-4 text-lg font-semibold leading-6 text-gray-900">Polling locations</h2>
+<div style="display: flex; justify-content: space-between;align-items: center;">
+  <h2 class="mt-4 text-lg font-semibold leading-6 text-gray-900">Polling locations</h2>
+  <%= link_to "Edit Polling Locations", edit_polling_locations_riding_path(@riding)%>
+</div>
 
 <div class="mt-6 p-6 border border-gray-500 rounded-lg grid grid-cols-6 gap-y-2">
   <div class="col-span-2 font-medium">

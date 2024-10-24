@@ -1,5 +1,6 @@
 class RidingsController < ApplicationController
-  before_action :set_riding, only: %i[ show edit update destroy ]
+  before_action :set_riding, only: %i[ show edit update destroy edit_polling_locations add_new_polling_location ]
+  before_action :set_polls, only: %i[ edit_polling_locations add_new_polling_location ]
 
   # GET /ridings or /ridings.json
   def index
@@ -18,6 +19,10 @@ class RidingsController < ApplicationController
 
   # GET /ridings/1/edit
   def edit
+  end
+
+  def edit_polling_locations
+    @polling_locations = @riding.polling_locations
   end
 
   # POST /ridings or /ridings.json
@@ -39,10 +44,11 @@ class RidingsController < ApplicationController
   def update
     respond_to do |format|
       if @riding.update(riding_params)
+        #update_polls
         format.html { redirect_to riding_url(@riding), notice: "Riding was successfully updated." }
         format.json { render :show, status: :ok, location: @riding }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.turbo_stream
         format.json { render json: @riding.errors, status: :unprocessable_entity }
       end
     end
@@ -66,6 +72,13 @@ class RidingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def riding_params
-      params.require(:riding).permit(:name, :riding_code, :province)
+      params.require(:riding).permit(:name, :riding_code, :province,
+                                     polling_locations_attributes: [:id, :title, :address, :city, :postal_code,
+                                      :_destroy, poll_ids: [] ])
+    end
+
+    def set_polls
+      @polls = @riding.polls.sort_by{ |poll| poll.number.to_i }
+      @available_polls = @polls.select{ |poll| poll.polling_location_id.nil? }
     end
 end

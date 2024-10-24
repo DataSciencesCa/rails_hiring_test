@@ -1,0 +1,30 @@
+<div class="nested-fields col-span-7 grid grid-cols-7" style="padding-bottom: 10px">
+  <div class="col-span-2">
+    <%= f.text_field :title, class:"border border-gray-300", style:"width: 20em;" %>
+  </div>
+
+  <div class="col-span-1">
+    <%= f.text_field :address, class:"border border-gray-300", style:"width: 10em;"  %>
+  </div>
+
+  <div class="col-span-1">
+    <%= f.text_field :city, class:"border border-gray-300", style:"width: 10em;"  %>
+  </div>
+
+  <div class="col-span-1">
+    <%= f.text_field :postal_code, class:"border border-gray-300", style:"width: 10em;"  %>
+  </div>
+
+  <div class="col-span-1">
+    <%= f.select :poll_ids,
+                        options_for_select((f.object.polls + @available_polls).collect { |p| [p.number, p.id] },
+                                           selected: f.object.polls.map{|p| p.id}),
+                        { multiple: true },
+                        { class: "block w-full rounded-sm cursor-pointer focus:outline-none chosen-select",
+                          style:"width: 10em;"} %>
+  </div>
+
+  <div class="col-span-1">
+    <%= link_to_remove_association "Remove", f %>
+  </div>
+</div>

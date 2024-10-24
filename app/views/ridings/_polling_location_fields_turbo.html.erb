@@ -1,0 +1,22 @@
+<div class="col-span-2">
+  <%= text_field_tag "riding[polling_locations_attributes][][title]", "", class:"border border-gray-300", style:"width: 20em;" %>
+</div>
+
+<div class="col-span-1">
+  <%= text_field_tag "riding[polling_locations_attributes][][address]", "", class:"border border-gray-300", style:"width: 10em;"  %>
+</div>
+
+<div class="col-span-1">
+  <%= text_field_tag "riding[polling_locations_attributes][][city]", "", class:"border border-gray-300", style:"width: 10em;"  %>
+</div>
+
+<div class="col-span-1">
+  <%= text_field_tag "riding[polling_locations_attributes][][postal_code]", "", class:"border border-gray-300", style:"width: 10em;"  %>
+</div>
+
+<div class="col-span-1">
+  <%= select_tag "riding[polling_locations_attributes][][poll_ids]", options_from_collection_for_select(available_polls, "id", "number"),
+                      { class: "block w-full rounded-sm cursor-pointer focus:outline-none chosen-select",
+                        style:"width: 10em;", multiple: true} %>
+</div>
+

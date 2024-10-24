@@ -1,0 +1,2 @@
+<%= turbo_stream.append "polling_locations_form", partial: "ridings/polling_location_fields_turbo", locals: { riding: @new_riding, available_polls: @available_polls }  %>
+<script>$(".chosen-select").chosen();</script>
